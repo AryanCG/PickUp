@@ -41,20 +41,21 @@ public class PickUp : MonoBehaviour {
 
 	void position()
     {
-		RaycastHit hit;
-		//ejecting ray from fps camera
-		if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit , Range , mask ) )
+		if(hand.transform.childCount < maxchildcount)
         {
-			rb = hit.rigidbody;
-			c = hit.collider;
+			RaycastHit hit;
+			Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, Range, mask);
+			
+				rb = hit.rigidbody;
+				c = hit.collider;
 
-			rb.isKinematic = true;
-			c.isTrigger = true;
+				rb.isKinematic = true;
+				c.isTrigger = true;
 
-			rb.transform.position = hand.transform.position;
-			rb.transform.parent = hand.transform;
+				rb.transform.position = hand.transform.position;
+				rb.transform.parent = hand.transform;
 
 			
-        }
+		}
 	}
 }
